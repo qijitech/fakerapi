@@ -7,12 +7,6 @@
   ],
   "license": "MIT",
   "type": "project",
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/home/vagrant/Code/licaishi/shared-dev/packages/api-starter-kit"
-    }
-  ],
   "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.2.*",
