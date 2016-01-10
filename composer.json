@@ -7,10 +7,18 @@
   ],
   "license": "MIT",
   "type": "project",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/home/vagrant/Code/licaishi/shared-dev/packages/api-starter-kit"
+    }
+  ],
   "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.2.*",
-    "qijitech/api-starter-kit": "dev-master"
+    "qijitech/api-starter-kit": "dev-master",
+    "tymon/jwt-auth": "dev-master",
+    "dingo/api": "1.0.*@dev"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
