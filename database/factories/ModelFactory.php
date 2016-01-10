@@ -25,15 +25,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Image::class, function (Faker\Generator $faker) {
-    return [
-        'user_id'       => User::all()->random()->id,
-        'url'           => $faker->imageUrl(200, 300),
-        'mediable_id'   => Feed::all()->random()->id,
-        'mediable_type' => 'Feed',
-    ];
-});
-
 $factory->define(Feed::class, function (Faker\Generator $faker) {
     return [
         'user_id'       => User::all()->random()->id,
@@ -41,5 +32,14 @@ $factory->define(Feed::class, function (Faker\Generator $faker) {
         'share_times'   => $faker->randomNumber(),
         'browse_times'  => $faker->randomNumber(),
         'comment_times' => $faker->randomNumber(),
+    ];
+});
+
+$factory->define(Image::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'       => User::all()->random()->id,
+        'url'           => $faker->imageUrl(200, 300),
+        'imageable_id'  => Feed::all()->random()->id,
+        'mediable_type' => 'Feed',
     ];
 });

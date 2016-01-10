@@ -27,7 +27,7 @@ class FeedsController extends ApiController
         $sinceId = $this->getSinceId($request);
         $limit = $this->getPageSize($request);
 
-        $query = Feed::with('user');
+        $query = Feed::with('user', 'images');
         if ($maxId) {
             $query->where('id', '<', $maxId);
         } else if ($sinceId) {

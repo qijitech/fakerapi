@@ -15,11 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserTableSeeder::class);
         Model::unguard();
         factory(User::class, 5)->create();
-        factory(Feed::class, 1000)->create();
-        factory(Image::class, 2000);
+        factory(Feed::class, 100)->create();
+        factory(Image::class, 100);
         Model::reguard();
     }
 }

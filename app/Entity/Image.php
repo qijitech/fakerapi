@@ -12,7 +12,7 @@ namespace App\Entity;
 class Image extends BaseEntity
 {
 
-    protected $fillable = ['url', 'user_id'];
+    protected $fillable = ['url', 'user_id', 'imageable_id', 'imageable_type'];
 
     protected $hidden = [
         'user_id',
