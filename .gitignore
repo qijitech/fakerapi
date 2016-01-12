@@ -5,7 +5,7 @@
 
 # composer
 composer.phar
-composer.lock
+# composer.lock
 
 # OS
 .DS_Store
