@@ -1409,39 +1409,6 @@
             "time": "2015-11-12 16:18:56"
         },
         {
-            "name": "qijitech/api-starter-kit",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "/home/vagrant/Code/licaishi/shared-dev/packages/api-starter-kit/",
-                "reference": "4f9f9c00731662514f20d037b0bcade7f34ebdee",
-                "shasum": null
-            },
-            "require": {
-                "illuminate/support": "5.2.*",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Api\\StarterKit\\": "src/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "YuGang Yang",
-                    "email": "smartydroid@gmail.com"
-                }
-            ],
-            "description": "api starter kit",
-            "homepage": "https://github.com/qijitech/api-starter-kit",
-            "keywords": [
-                "api",
-                "laravel 5.2",
-                "starter kit"
-            ]
-        },
-        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.1",
             "source": {
