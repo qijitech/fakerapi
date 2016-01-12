@@ -1409,6 +1409,48 @@
             "time": "2015-11-12 16:18:56"
         },
         {
+            "name": "qijitech/api-starter-kit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qijitech/api-starter-kit.git",
+                "reference": "4f9f9c00731662514f20d037b0bcade7f34ebdee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qijitech/api-starter-kit/zipball/4f9f9c00731662514f20d037b0bcade7f34ebdee",
+                "reference": "4f9f9c00731662514f20d037b0bcade7f34ebdee",
+                "shasum": ""
+            },
+            "require": {
+                "dingo/api": "1.0.*@dev",
+                "illuminate/support": "5.2.*",
+                "php": ">=5.5.9",
+                "tymon/jwt-auth": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Api\\StarterKit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "YuGang Yang",
+                    "email": "smartydroid@gmail.com"
+                }
+            ],
+            "description": "api starter kit",
+            "homepage": "https://github.com/qijitech/api-starter-kit",
+            "keywords": [
+                "Laravel 5.2",
+                "api",
+                "starter kit"
+            ],
+            "time": "2016-01-08 14:40:54"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.1",
             "source": {
