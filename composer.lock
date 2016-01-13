@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2dc9b587a65e0eec7acb1e11e4407365",
-    "content-hash": "d6b842c330599c9d93fdb5a6e054b7a7",
+    "hash": "c10e6db13de950e79c3a2369c41b7718",
+    "content-hash": "9818488ecf56b4c9d2ab06569f1ccec3",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -561,16 +561,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.7",
+            "version": "v5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "26cd65eaa4bcc0fb0be381cfb7cfdcda06a3c2b4"
+                "reference": "867914788c2ec942967c3608ed54626228a5f916"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/26cd65eaa4bcc0fb0be381cfb7cfdcda06a3c2b4",
-                "reference": "26cd65eaa4bcc0fb0be381cfb7cfdcda06a3c2b4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/867914788c2ec942967c3608ed54626228a5f916",
+                "reference": "867914788c2ec942967c3608ed54626228a5f916",
                 "shasum": ""
             },
             "require": {
@@ -685,7 +685,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-01-07 13:54:34"
+            "time": "2016-01-12 22:45:00"
         },
         {
             "name": "league/flysystem",
@@ -1407,6 +1407,49 @@
                 "shell"
             ],
             "time": "2015-11-12 16:18:56"
+        },
+        {
+            "name": "qijitech/api-starter-kit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qijitech/api-starter-kit.git",
+                "reference": "ad385d0cdd9b7af2f77a1b4d386f710673d59fce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qijitech/api-starter-kit/zipball/ad385d0cdd9b7af2f77a1b4d386f710673d59fce",
+                "reference": "ad385d0cdd9b7af2f77a1b4d386f710673d59fce",
+                "shasum": ""
+            },
+            "require": {
+                "dingo/api": "1.0.x-dev",
+                "illuminate/database": "5.2.*",
+                "illuminate/support": "5.2.*",
+                "php": ">=5.5.9",
+                "tymon/jwt-auth": "0.5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Api\\StarterKit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "YuGang Yang",
+                    "email": "smartydroid@gmail.com"
+                }
+            ],
+            "description": "api starter kit",
+            "homepage": "https://github.com/qijitech/api-starter-kit",
+            "keywords": [
+                "Laravel 5.2",
+                "api",
+                "starter kit"
+            ],
+            "time": "2016-01-13 08:14:28"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2240,7 +2283,7 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "dev-master",
+            "version": "0.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
@@ -3529,13 +3572,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
-        "qijitech/api-starter-kit": 20,
-        "tymon/jwt-auth": 20,
-        "dingo/api": 20
+        "qijitech/api-starter-kit": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.5.9"
