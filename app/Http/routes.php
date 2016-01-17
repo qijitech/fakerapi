@@ -28,4 +28,5 @@ Route::get('/', function () {
 $api = app('api.router');
 $api->version('v1', ['namespace' => 'App\Http\Controllers\V1'], function ($api) {
     $api->get('feeds', 'FeedsController@getList');
+    $api->get('feedsWithPage', 'FeedsController@getListWithPage');
 });

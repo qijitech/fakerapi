@@ -10,6 +10,7 @@ namespace App\Http\Controllers\V1;
 
 
 use Api\StarterKit\Controllers\ApiController;
+use Api\StarterKit\Requests\PagedRequest;
 use App\Entity\Feed;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,16 @@ class FeedsController extends ApiController
         $collection = $query->orderBy('id', 'desc')->take($limit)->get();
 
         return $this->respondWithCollection($collection);
+    }
+
+    public function getListWithPage(PagedRequest $request)
+    {
+        $perPage = $this->getPageSize($request);
+
+        $data = Feed::with('user', 'images')
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
+        return $this->respondWithPagination($data);
     }
 
 }
