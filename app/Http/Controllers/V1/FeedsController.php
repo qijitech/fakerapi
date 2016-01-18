@@ -40,6 +40,10 @@ class FeedsController extends ApiController
         return $this->respondWithCollection($collection);
     }
 
+    /**
+     * @param PagedRequest $request
+     * @return mixed
+     */
     public function getListWithPage(PagedRequest $request)
     {
         $perPage = $this->getPageSize($request);

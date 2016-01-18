@@ -561,16 +561,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.8",
+            "version": "v5.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "867914788c2ec942967c3608ed54626228a5f916"
+                "reference": "93dc5b0089eef468157fd7200e575c3861ec59a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/867914788c2ec942967c3608ed54626228a5f916",
-                "reference": "867914788c2ec942967c3608ed54626228a5f916",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/93dc5b0089eef468157fd7200e575c3861ec59a5",
+                "reference": "93dc5b0089eef468157fd7200e575c3861ec59a5",
                 "shasum": ""
             },
             "require": {
@@ -685,7 +685,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-01-12 22:45:00"
+            "time": "2016-01-13 20:29:10"
         },
         {
             "name": "league/flysystem",
@@ -1414,12 +1414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/qijitech/api-starter-kit.git",
-                "reference": "ad385d0cdd9b7af2f77a1b4d386f710673d59fce"
+                "reference": "2e4041c8a3ba544666ed0e43c6f107221bad7d74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/qijitech/api-starter-kit/zipball/ad385d0cdd9b7af2f77a1b4d386f710673d59fce",
-                "reference": "ad385d0cdd9b7af2f77a1b4d386f710673d59fce",
+                "url": "https://api.github.com/repos/qijitech/api-starter-kit/zipball/19f26f0831e26290d6a578f288707568c345eab1",
+                "reference": "2e4041c8a3ba544666ed0e43c6f107221bad7d74",
                 "shasum": ""
             },
             "require": {
@@ -1449,7 +1449,7 @@
                 "api",
                 "starter kit"
             ],
-            "time": "2016-01-13 08:14:28"
+            "time": "2016-01-17 15:11:48"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2587,7 +2587,7 @@
             ],
             "authors": [
                 {
-                    "name": "Pádraic Brady",
+                    "name": "Padraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },

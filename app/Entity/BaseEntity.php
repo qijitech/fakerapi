@@ -9,9 +9,9 @@
 namespace App\Entity;
 
 
-use Illuminate\Database\Eloquent\Model;
+use Api\StarterKit\Enums\Entity;
 
-class BaseEntity extends Model
+class BaseEntity extends Entity
 {
 
 }
