@@ -15,6 +15,13 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Feed extends BaseEntity
 {
 
+    /**
+     * The class name to be used in polymorphic relations.
+     *
+     * @var string
+     */
+//    protected $morphClass = 'Feed';
+
     protected $hidden = ['updated_at', 'user_id'];
 
     /**

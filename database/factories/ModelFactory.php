@@ -40,6 +40,6 @@ $factory->define(Image::class, function (Faker\Generator $faker) {
         'user_id'       => User::all()->random()->id,
         'url'           => $faker->imageUrl(200, 300),
         'imageable_id'  => Feed::all()->random()->id,
-        'imageable_type' => 'Feed',
+        'imageable_type' => Feed::class,
     ];
 });
