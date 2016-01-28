@@ -35,11 +35,17 @@ $factory->define(Feed::class, function (Faker\Generator $faker) {
     ];
 });
 
+
 $factory->define(Image::class, function (Faker\Generator $faker) {
+    $widths = [720, 1080, 480, 480, 540, 720, 480, 1080, 320];
+    $heights = [1290, 1920, 854, 800, 960, 1184, 728, 1776, 480];
+    $index = $faker->numberBetween(0, count($widths) - 1);
     return [
-        'user_id'       => User::all()->random()->id,
-        'url'           => $faker->imageUrl(200, 300),
-        'imageable_id'  => Feed::all()->random()->id,
+        'user_id'        => User::all()->random()->id,
+        'url'            => $faker->imageUrl($widths[$index], $heights[$index]),
+        'width'          => $widths[$index],
+        'height'         => $heights[$index],
+        'imageable_id'   => Feed::all()->random()->id,
         'imageable_type' => Feed::class,
     ];
 });

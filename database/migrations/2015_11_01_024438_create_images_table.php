@@ -21,6 +21,8 @@ class CreateImagesTable extends Migration
 
             $table->unsignedInteger('user_id')->nullable();
             $table->string('url');
+            $table->smallInteger('width');
+            $table->smallInteger('height');
 
             // morph
             $table->morphs('imageable');

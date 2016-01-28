@@ -38,7 +38,7 @@ class Feed extends BaseEntity
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable')->select(
-            ['id', 'imageable_id', 'imageable_type', 'url']
+            ['id', 'imageable_id', 'width', 'height', 'imageable_type', 'url']
         );
     }
 
