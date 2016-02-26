@@ -32,4 +32,9 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers\V1'], function ($api) 
 
     $api->get('feeds', 'FeedsController@getList');
     $api->get('feedsWithPage', 'FeedsController@getListWithPage');
+
+    $api->group(['middleware' => 'api.auth'], function ($api) {
+        // 班主任所带班级
+        $api->get('user/profile', 'Auth\AuthController@getProfile');
+    });
 });
