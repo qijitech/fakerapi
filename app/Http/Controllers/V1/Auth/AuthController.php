@@ -6,7 +6,6 @@ use Api\StarterKit\Controllers\ApiController;
 use App\Entity\User;
 use App\Http\Requests\Request;
 use App\Transformers\AuthTransformer;
-use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
