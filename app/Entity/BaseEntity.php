@@ -9,7 +9,7 @@
 namespace App\Entity;
 
 
-use Api\StarterKit\Enums\Entity;
+use Api\StarterKit\Entities\Entity;
 
 class BaseEntity extends Entity
 {
