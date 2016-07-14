@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Laravel\Lumen\Routing\Controller as BaseController;
+use Api\StarterKit\Controllers\ApiController;
 
-class Controller extends BaseController
+class Controller extends ApiController
 {
-    //
+  //
 }
