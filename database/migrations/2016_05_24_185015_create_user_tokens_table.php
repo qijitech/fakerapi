@@ -22,7 +22,7 @@ class CreateUserTokensTable extends Migration
 
       $table->string('open_id', 64)->comment('第三方平台ID');
       $table->enum('platform', Platform::getValues())->default(Platform::QQ)->comment('平台类型');
-      $table->boolean('is_bind')->comment('是否绑定')->default(true);
+      $table->boolean('is_bind')->default(true)->comment('是否绑定')->default(true);
 
       $table->text('platform_info')->comment('平台信息');
 

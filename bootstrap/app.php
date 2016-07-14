@@ -83,6 +83,7 @@ $app->singleton(
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(\Api\StarterKit\Providers\LumenServiceProvider::class);
+$app->register(Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
 $app->register(App\Providers\AppServiceProvider::class);
 
 /*

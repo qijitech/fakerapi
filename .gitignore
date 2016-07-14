@@ -17,6 +17,8 @@ dump.rdb
 # IDE
 .idea
 _ide_helper.php
+.phpstorm.meta.php
+lumen_ide_helper.php
 
 # Configuration
 /app/config/local

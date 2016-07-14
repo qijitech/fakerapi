@@ -12,7 +12,9 @@
     "php": ">=5.5.9",
     "laravel/lumen-framework": "5.2.*",
     "vlucas/phpdotenv": "~2.2",
-    "qijitech/api-starter-kit": "dev-lumen"
+    "qijitech/api-starter-kit": "dev-lumen",
+    "barryvdh/laravel-ide-helper": "^2.1",
+    "doctrine/dbal": "^2.5"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
