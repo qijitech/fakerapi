@@ -1,5 +1,9 @@
 <?php
 
-$app->get('/', function () use ($app) {
-  return $app->version();
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1.0', ['namespace' => 'App\Http\Controllers\V1_0'], function ($api) {
+  $api->get('/', function () {
+    return app()->version();
+  });
 });
