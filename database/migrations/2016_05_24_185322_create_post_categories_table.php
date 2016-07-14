@@ -22,7 +22,7 @@ class CreatePostCategoriesTable extends Migration
 
       $table->string('name', 20)->comment('名称');
 
-      $table->unsignedSmallInteger('parent_id')->comment('父类ID');
+      $table->unsignedSmallInteger('parent_id')->nullable()->comment('父类ID');
       $table->unsignedSmallInteger('count_sub_categories')->comment('子类个数');
 
       $table->enum('status', Status::getValues())->default(Status::ENABLE)->comment('状态');

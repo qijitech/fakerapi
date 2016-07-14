@@ -50,23 +50,18 @@ class PostRepository implements PostInterface
 
   public function getPosts($sinceId, $maxId, $pageSize = 20, $lng = 0, $lat = 0)
   {
-    if ($lat && $lng) {
-      $direction = 'asc';
-      $orderByRaw = DB::raw('ACOS(SIN((' . $lat . ' * 3.1415) / 180 ) * SIN((`lat` * 3.1415) / 180 ) + COS((' . $lat . ' * 3.1415) / 180 ) * COS((`lat` * 3.1415) / 180 ) *COS((' . $lng . ' * 3.1415) / 180 - (`lng` * 3.1415) / 180 ) ) * 6380');
-    } else {
-      $orderByRaw = 'id';
-      $direction = 'desc';
-    }
-
-    $query = Post::with('userInfo', 'category', 'images');
+    $query = Post::with('userInfo', 'category', 'images')
+      ->whereDeleted(false);
     if ($maxId) {
       $query->where('id', '<', $maxId);
     } else if ($sinceId) {
       $query->where('id', '>', $sinceId);
     }
 
-    return Post::with('userInfo', 'category', 'images')
-      ->whereDeleted(false)->orderBy($orderByRaw, $direction)
+    $direction = 'asc';
+    $orderByRaw = DB::raw('ACOS(SIN((' . $lat . ' * 3.1415) / 180 ) * SIN((`lat` * 3.1415) / 180 ) + COS((' . $lat . ' * 3.1415) / 180 ) * COS((`lat` * 3.1415) / 180 ) *COS((' . $lng . ' * 3.1415) / 180 - (`lng` * 3.1415) / 180 ) ) * 6380');
+
+    return $query->orderBy('id', 'desc')->orderBy($orderByRaw, $direction)
       ->take($pageSize)->get();
   }
 
