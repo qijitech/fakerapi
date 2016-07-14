@@ -27,6 +27,11 @@ class PostsController extends Controller
    */
   public function index()
   {
+    $this->validate($this->request, [
+      'lng' => 'required|numeric',
+      'lat' => 'required|numeric',
+    ]);
+
     $data = $this->postInterface->getPosts(
       $this->getSinceId(),
       $this->getMaxId(),
