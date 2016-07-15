@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\V1_0;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Interfaces\CategoryInterface;
 use App\Repositories\Interfaces\PostInterface;
 
 /**
@@ -40,6 +41,72 @@ class PostsController extends Controller
       $this->inputGet('lat')
     );
     return $this->respondWithCollection($data);
+  }
+
+  /**
+   * 发布帖子
+   * POST /posts
+   * @param CategoryInterface $categoryInterface
+   * @return mixed
+   */
+  public function store(CategoryInterface $categoryInterface)
+  {
+
+    // validate params
+    $this->validate($this->request, [
+      'post_category_id' => 'required|integer',
+      'content'          => 'string|max:400',
+      'count_images'     => 'integer|max:9',
+      'deleted'          => 'boolean',
+      'lng'              => 'numeric',
+      'lat'              => 'numeric',
+    ]);
+
+    // validate content and images
+    $content = $this->inputGet('content');
+    $images = $this->inputGet('images');
+
+    if (!$content && (!count($images) || !$images)) {
+      return $this->respondUnprocessable('动态内容或图片不能都为空');
+    }
+
+    if ($images && !is_array($images)) {
+      return $this->respondUnprocessable('图片参数格式不正确');
+    }
+
+    $category = $categoryInterface->findOrFail($this->inputGet('post_category_id'));
+
+    // 获取登录用户
+    $user = $this->auth()->user();
+
+    $post = $this->postInterface->createPost(
+      $user->userInfo,
+      $category,
+      $content,
+      $images,
+      $this->inputGet('lat'),
+      $this->inputGet('lng')
+    );
+
+    return $this->respondWithItem($post);
+  }
+
+  /**
+   * 帖子详情
+   * GET /posts/{post_id}
+   */
+  public function show($postId)
+  {
+
+  }
+
+  /**
+   * 删除帖子
+   * POST /posts/{post_id}/destroy
+   */
+  public function destroy($postId)
+  {
+
   }
 
 }

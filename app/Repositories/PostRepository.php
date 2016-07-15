@@ -3,6 +3,7 @@
 use App\Entity\Post;
 use App\Entity\PostCategory;
 use App\Entity\UserInfo;
+use App\Enum\Status;
 use App\Repositories\Interfaces\PostInterface;
 use DB;
 
@@ -51,6 +52,7 @@ class PostRepository implements PostInterface
   public function getPosts($sinceId, $maxId, $pageSize = 20, $lng = 0, $lat = 0)
   {
     $query = Post::with('userInfo', 'category', 'images')
+      ->whereStatus(Status::ENABLE)
       ->whereDeleted(false);
     if ($maxId) {
       $query->where('id', '<', $maxId);
