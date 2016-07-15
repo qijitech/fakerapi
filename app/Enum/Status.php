@@ -1,23 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: YuGang Yang
- * Date: 1/11/16
- * Time: 12:07 AM
- */
-
 namespace App\Enum;
-
 
 use Api\StarterKit\Enums\Enum;
 
+/**
+ * 状态-用于动态显示内容
+ * Class Status
+ * @package App\Enum
+ */
 class Status extends Enum
 {
+  /**
+   * 可用
+   */
+  const ENABLE = 'enable';
 
-    const CREATED = 'created';
-
-    const ENABLE = 'enable';
-
-    const DISABLE = 'disable';
-
+  /**
+   * 禁止不显示
+   */
+  const DISABLED = 'disabled';
 }

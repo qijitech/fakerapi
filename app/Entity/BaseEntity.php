@@ -1,17 +1,23 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: YuGang Yang
- * Date: 1/11/16
- * Time: 12:14 AM
- */
-
-namespace App\Entity;
-
+<?php namespace App\Entity;
 
 use Api\StarterKit\Entities\Entity;
 
+/**
+ * App\Entity\BaseEntity
+ *
+ * @property-read mixed $created_at
+ * @mixin \Eloquent
+ */
 class BaseEntity extends Entity
 {
+
+  /**
+   * @return int
+   */
+  public function getCreatedAtAttribute()
+  {
+    $time = strtotime($this->attributes['created_at']);
+    return $time == false ? 0 : $time;
+  }
 
 }

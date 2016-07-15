@@ -11,41 +11,49 @@
 |
 */
 
-use App\Entity\Feed;
+use App\Entity\Comment;
 use App\Entity\Image;
+use App\Entity\Post;
+use App\Entity\PostCategory;
 use App\Entity\User;
+use App\Entity\UserInfo;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
-    return [
-        'phone'    => '181' . mt_rand(1000, 9999) . '8181',
-        'nickname' => $faker->name,
-        'email'    => $faker->email,
-        'password' => bcrypt('111111'),
-        'avatar'   => $faker->imageUrl(180, 180),
-    ];
+  return [
+    'mobile'   => '181' . mt_rand(10000000, 99990000),
+    'password' => bcrypt('123456'),
+  ];
 });
 
-$factory->define(Feed::class, function (Faker\Generator $faker) {
-    return [
-        'user_id'       => User::all()->random()->id,
-        'content'       => $faker->paragraph(),
-        'share_times'   => $faker->randomNumber(),
-        'browse_times'  => $faker->randomNumber(),
-        'comment_times' => $faker->randomNumber(),
-    ];
+$factory->define(UserInfo::class, function (Faker\Generator $faker) {
+  return [
+    'user_id'  => function () {
+      return factory(User::class)->create()->id;
+    },
+    'nickname' => mt_rand(10000000, 99990000),
+  ];
 });
 
+$factory->define(Post::class, function (Faker\Generator $faker) {
+  return [
+    'content'          => $faker->paragraph(3),
+    'post_category_id' => PostCategory::all()->random()->id,
+    'user_id'          => UserInfo::all()->random()->user_id,
+  ];
+});
 
 $factory->define(Image::class, function (Faker\Generator $faker) {
-    $widths = [720, 1080, 480, 480, 540, 720, 480, 1080, 320];
-    $heights = [1290, 1920, 854, 800, 960, 1184, 728, 1776, 480];
-    $index = $faker->numberBetween(0, count($widths) - 1);
-    return [
-        'user_id'        => User::all()->random()->id,
-        'url'            => $faker->imageUrl($widths[$index], $heights[$index]),
-        'width'          => $widths[$index],
-        'height'         => $heights[$index],
-        'imageable_id'   => Feed::all()->random()->id,
-        'imageable_type' => Feed::class,
-    ];
+  return [
+    'url'            => $faker->imageUrl(200, 200),
+    'imageable_id'   => Post::all()->random()->id,
+    'imageable_type' => Post::class,
+  ];
+});
+
+$factory->define(Comment::class, function (Faker\Generator $faker) {
+  return [
+    'content' => $faker->paragraph(2),
+    'user_id' => UserInfo::all()->random()->user_id,
+    'post_id' => 1,
+  ];
 });
