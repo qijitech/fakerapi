@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CategoryInterface;
 use App\Repositories\Interfaces\PostInterface;
+use App\Transformers\PostsTransformer;
 
 /**
  * 帖子Controller
@@ -24,9 +25,10 @@ class PostsController extends Controller
 
   /**
    * GET /posts
+   * @param PostsTransformer $postsTransformer
    * @return mixed
    */
-  public function index()
+  public function index(PostsTransformer $postsTransformer)
   {
     $this->validate($this->request, [
       'lng' => 'required|numeric',
@@ -40,16 +42,17 @@ class PostsController extends Controller
       $this->inputGet('lng'),
       $this->inputGet('lat')
     );
-    return $this->respondWithCollection($data);
+    return $this->respondWithCollection($data, $postsTransformer);
   }
 
   /**
    * 发布帖子
    * POST /posts
    * @param CategoryInterface $categoryInterface
+   * @param PostsTransformer $postsTransformer
    * @return mixed
    */
-  public function store(CategoryInterface $categoryInterface)
+  public function store(CategoryInterface $categoryInterface, PostsTransformer $postsTransformer)
   {
 
     // validate params
@@ -57,9 +60,8 @@ class PostsController extends Controller
       'post_category_id' => 'required|integer',
       'content'          => 'string|max:400',
       'count_images'     => 'integer|max:9',
-      'deleted'          => 'boolean',
-      'lng'              => 'numeric',
-      'lat'              => 'numeric',
+      'lng'              => 'required|numeric',
+      'lat'              => 'required|numeric',
     ]);
 
     // validate content and images
@@ -88,7 +90,7 @@ class PostsController extends Controller
       $this->inputGet('lng')
     );
 
-    return $this->respondWithItem($post);
+    return $this->respondWithItem($post, $postsTransformer);
   }
 
   /**
