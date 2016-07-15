@@ -43,6 +43,12 @@ class UserInfo extends BaseEntity
     'user_id',
   ];
 
+  protected $hidden = [
+    'user_id',
+    'created_at',
+    'updated_at',
+  ];
+
   protected $casts = [
     'gender'         => 'int',
     'year_of_birth'  => 'int',

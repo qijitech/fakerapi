@@ -4,17 +4,17 @@ use App\Entity\User;
 use League\Fractal\TransformerAbstract;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class LoginTransformer extends TransformerAbstract
+class AuthTransformer extends TransformerAbstract
 {
 
   public function transform(User $user)
   {
     return [
       'id'         => $user->id,
-      'mobile'     => $user->mobile,
+      'mobile'     => $user->mobile ? preg_replace('/(1\d{1,2})\d\d(\d{0,2})/', '\1****\3', $user->mobile) : '',
       'email'      => $user->email,
-      'user_info'  => $user->user_info,
-      'user_token' => $user->user_token,
+      'user_info'  => $user->userInfo,
+      'user_token' => $user->userToken,
       'token'      => JWTAuth::fromUser($user),
     ];
   }
