@@ -19,5 +19,7 @@ $api->version('v1.0', ['namespace' => 'App\Http\Controllers\V1_0'], function ($a
     $api->post('posts', 'PostsController@store');
     $api->get('posts/{post_id}', 'PostsController@show');
     $api->post('posts/{post_id}/destroy', 'PostsController@destroy');
+
+    $api->post('comments', 'CommentsController@store'); //发送评论
   });
 });

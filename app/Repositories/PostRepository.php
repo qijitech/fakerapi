@@ -1,5 +1,6 @@
 <?php namespace App\Repositories;
 
+use Api\StarterKit\Exception\ResourceDisabledException;
 use App\Entity\Post;
 use App\Entity\PostCategory;
 use App\Entity\UserInfo;
@@ -67,9 +68,18 @@ class PostRepository implements PostInterface
       ->take($pageSize)->get();
   }
 
-  public function getPost($postId)
+  public function findPostWithException($postId)
   {
-    // TODO: Implement getPost() method.
+    $post = $this->findPost($postId);
+    if ($post->status == Status::DISABLED) {
+      throw new ResourceDisabledException();
+    }
+    return $post;
+  }
+
+  public function findPost($postId)
+  {
+    return Post::findOrFail($postId);
   }
 
   public function getUserPosts($userId, $sinceId, $maxId, $pageSize = 20)
