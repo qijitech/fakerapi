@@ -82,6 +82,12 @@ class PostsRepository implements PostsInterface
     return Post::findOrFail($postId);
   }
 
+  public function delete($postId)
+  {
+    $records = Post::whereId($postId)->update(['deleted' => true]);
+    return $records;
+  }
+
   public function getUserPosts($userId, $sinceId, $maxId, $pageSize = 20)
   {
     // TODO: Implement getUserPosts() method.

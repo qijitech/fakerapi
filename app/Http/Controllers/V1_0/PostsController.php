@@ -111,7 +111,11 @@ class PostsController extends Controller
    */
   public function destroy($postId)
   {
-
+    $records = $this->postInterface->delete($postId);
+    if ($records) {
+      return $this->respondSuccess('删除帖子成功');
+    }
+    return $this->respondUnprocessable('删除失败');
   }
 
 }
