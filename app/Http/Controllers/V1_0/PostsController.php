@@ -59,7 +59,6 @@ class PostsController extends Controller
     $this->validate($this->request, [
       'post_category_id' => 'required|integer',
       'content'          => 'string|max:400',
-      'count_images'     => 'integer|max:9',
       'lng'              => 'required|numeric',
       'lat'              => 'required|numeric',
     ]);
@@ -74,6 +73,10 @@ class PostsController extends Controller
 
     if ($images && !is_array($images)) {
       return $this->respondUnprocessable('图片参数格式不正确');
+    }
+
+    if ($images && count($images) > 9) {
+      return $this->respondUnprocessable('图片不能超过9张');
     }
 
     $category = $categoryInterface->findOrFail($this->inputGet('post_category_id'));
