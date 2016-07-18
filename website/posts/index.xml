@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Faker api</title>
+    <link>http://qijitech.github.io/fakerapi/posts/</link>
+    <description>Recent content in Posts on Faker api</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Jul 2016 13:01:25 +0800</lastBuildDate>
+    <atom:link href="http://qijitech.github.io/fakerapi/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Post</title>
+      <link>http://qijitech.github.io/fakerapi/posts/</link>
+      <pubDate>Mon, 18 Jul 2016 13:01:25 +0800</pubDate>
+      
+      <guid>http://qijitech.github.io/fakerapi/posts/</guid>
+      <description>
+
+&lt;h2 id=&#34;动态列表&#34;&gt;动态列表&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;地址： GET /posts&lt;/li&gt;
+&lt;li&gt;Demo：&lt;a href=&#34;http://fakerapi.qiji.tech/posts&#34;&gt;http://fakerapi.qiji.tech/posts&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;参数：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;lng：经度&lt;/li&gt;
+&lt;li&gt;lat：纬度&lt;/li&gt;
+&lt;li&gt;max-id：loadmore使用&lt;/li&gt;
+&lt;li&gt;since-id：refresh使用&lt;/li&gt;
+&lt;li&gt;page_size：每页显示条数，默认20条「optional」
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;max-id和since-id不同时使用
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Response&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+{
+    &amp;quot;id&amp;quot;: 110,
+    &amp;quot;content&amp;quot;: &amp;quot;qqsss&amp;quot;,
+    &amp;quot;created_at&amp;quot;: 1468774879,
+    &amp;quot;count_images&amp;quot;: 2,
+    &amp;quot;lng&amp;quot;: 30,
+    &amp;quot;lat&amp;quot;: 30,
+    &amp;quot;images&amp;quot;: [
+        {
+            &amp;quot;id&amp;quot;: 213,
+            &amp;quot;url&amp;quot;: &amp;quot;sss&amp;quot;
+        },
+        {
+            &amp;quot;id&amp;quot;: 214,
+            &amp;quot;url&amp;quot;: &amp;quot;1111&amp;quot;
+        }
+    ],
+    &amp;quot;userInfo&amp;quot;: {
+        &amp;quot;user_id&amp;quot;: 22,
+        &amp;quot;nickname&amp;quot;: &amp;quot;MMfdsakf&amp;quot;,
+        &amp;quot;avatar&amp;quot;: &amp;quot;&amp;quot;,
+        &amp;quot;gender&amp;quot;: 0
+    },
+    &amp;quot;category&amp;quot;: {
+        &amp;quot;id&amp;quot;: 1,
+        &amp;quot;name&amp;quot;: &amp;quot;心情状态&amp;quot;
+    }
+},
+{
+    &amp;quot;id&amp;quot;: 109,
+    &amp;quot;content&amp;quot;: &amp;quot;qqsss&amp;quot;,
+    &amp;quot;created_at&amp;quot;: 1468570355,
+    &amp;quot;count_images&amp;quot;: 2,
+    &amp;quot;lng&amp;quot;: 30,
+    &amp;quot;lat&amp;quot;: 30,
+    &amp;quot;images&amp;quot;: [
+        {
+            &amp;quot;id&amp;quot;: 211,
+            &amp;quot;url&amp;quot;: &amp;quot;sss&amp;quot;
+        },
+        {
+            &amp;quot;id&amp;quot;: 212,
+            &amp;quot;url&amp;quot;: &amp;quot;1111&amp;quot;
+        }
+    ],
+    &amp;quot;userInfo&amp;quot;: {
+        &amp;quot;user_id&amp;quot;: 22,
+        &amp;quot;nickname&amp;quot;: &amp;quot;MMfdsakf&amp;quot;,
+        &amp;quot;avatar&amp;quot;: &amp;quot;&amp;quot;,
+        &amp;quot;gender&amp;quot;: 0
+    },
+    &amp;quot;category&amp;quot;: {
+        &amp;quot;id&amp;quot;: 1,
+        &amp;quot;name&amp;quot;: &amp;quot;心情状态&amp;quot;
+    }
+}
+]
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Error&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;422 Unprocessable Entity&amp;quot;,
+    &amp;quot;errors&amp;quot;: {
+        &amp;quot;lng&amp;quot;: [
+            &amp;quot;The lng field is required.&amp;quot;
+        ],
+        &amp;quot;lat&amp;quot;: [
+            &amp;quot;The lat field is required.&amp;quot;
+        ]
+    },
+    &amp;quot;status_code&amp;quot;: 422
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;发布帖子&#34;&gt;发布帖子&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;地址： POST /posts&lt;/li&gt;
+&lt;li&gt;Demo：&lt;a href=&#34;http://fakerapi.qiji.tech/posts&#34;&gt;http://fakerapi.qiji.tech/posts&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;参数：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;post_category_id：类别id&lt;/li&gt;
+&lt;li&gt;lng：经度&lt;/li&gt;
+&lt;li&gt;lat：纬度&lt;/li&gt;
+&lt;li&gt;content：内容（optional）&lt;/li&gt;
+&lt;li&gt;images：图片路径（optional、数组）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;images和content不能同时为空
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Response&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+&amp;quot;id&amp;quot;: 111,
+&amp;quot;content&amp;quot;: &amp;quot;fffff&amp;quot;,
+&amp;quot;created_at&amp;quot;: 1468818893,
+&amp;quot;count_images&amp;quot;: 1,
+&amp;quot;lng&amp;quot;: 10,
+&amp;quot;lat&amp;quot;: 30,
+&amp;quot;images&amp;quot;: [
+    {
+        &amp;quot;id&amp;quot;: 215,
+        &amp;quot;url&amp;quot;: &amp;quot;1111&amp;quot;
+    }
+],
+&amp;quot;userInfo&amp;quot;: {
+    &amp;quot;user_id&amp;quot;: 22,
+    &amp;quot;nickname&amp;quot;: &amp;quot;MMfdsakf&amp;quot;,
+    &amp;quot;avatar&amp;quot;: &amp;quot;&amp;quot;,
+    &amp;quot;gender&amp;quot;: 0
+},
+&amp;quot;category&amp;quot;: {
+    &amp;quot;id&amp;quot;: 1,
+    &amp;quot;name&amp;quot;: &amp;quot;心情状态&amp;quot;
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Error&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;422 Unprocessable Entity&amp;quot;,
+    &amp;quot;errors&amp;quot;: {
+        &amp;quot;post_category_id&amp;quot;: [
+            &amp;quot;The post category id field is required.&amp;quot;
+        ],
+        &amp;quot;lng&amp;quot;: [
+            &amp;quot;The lng field is required.&amp;quot;
+        ]
+    },
+    &amp;quot;status_code&amp;quot;: 422
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
