@@ -19,7 +19,7 @@ class MyPostsTransformer extends TransformerAbstract
       'lat'          => $post->lat,
       'deleted'      => $post->deleted,
       'images'       => $post->images,
-      'userInfo'     => [
+      'user_info'     => [
         'user_id'  => $userInfo->user_id,
         'nickname' => $userInfo->nickname,
         'avatar'   => $userInfo->avatar,
