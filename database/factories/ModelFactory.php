@@ -30,6 +30,7 @@ $factory->define(UserInfo::class, function (Faker\Generator $faker) {
     'user_id'  => function () {
       return factory(User::class)->create()->id;
     },
+    'avatar'   => $faker->imageUrl(100, 100),
     'nickname' => $faker->name,
   ];
 });
