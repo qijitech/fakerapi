@@ -30,7 +30,7 @@ $factory->define(UserInfo::class, function (Faker\Generator $faker) {
     'user_id'  => function () {
       return factory(User::class)->create()->id;
     },
-    'nickname' => mt_rand(10000000, 99990000),
+    'nickname' => $faker->name,
   ];
 });
 
