@@ -4,6 +4,7 @@
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CommentsInterface;
 use App\Repositories\Interfaces\PostsInterface;
+use App\Transformers\CommentsTransformer;
 
 /**
  * 评论Controller
@@ -24,25 +25,12 @@ class CommentsController extends Controller
   }
 
   /**
-   * /GET /comments/{post_id}
-   * @return mixed
-   */
-  public function index($postId)
-  {
-    $data = $this->commentsInterface->getComments($postId,
-      $this->getSinceId(),
-      $this->getMaxId(),
-      $this->getPageSize()
-    );
-    return $this->respondWithCollection($data);
-  }
-
-  /**
    * POST /comments
    * @param PostsInterface $postsInterface
+   * @param CommentsTransformer $commentsTransformer
    * @return mixed
    */
-  public function store(PostsInterface $postsInterface)
+  public function store(PostsInterface $postsInterface, CommentsTransformer $commentsTransformer)
   {
     $this->validate($this->request, [
       'post_id' => 'required|integer',
@@ -63,7 +51,23 @@ class CommentsController extends Controller
     $comment = $this->commentsInterface->createComment($user, $post,
       $this->inputGet('content'), $parent
     );
-    return $this->respondWithItem($comment);
+    return $this->respondWithItem($comment, $commentsTransformer);
+  }
+
+  /**
+   * /GET /comments/{post_id}
+   * @param CommentsTransformer $commentsTransformer
+   * @param $postId
+   * @return mixed
+   */
+  public function index(CommentsTransformer $commentsTransformer, $postId)
+  {
+    $data = $this->commentsInterface->getComments($postId,
+      $this->getSinceId(),
+      $this->getMaxId(),
+      $this->getPageSize()
+    );
+    return $this->respondWithCollection($data, $commentsTransformer);
   }
 
 }
