@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Auths on Faker api</title>
+    <link>http://qijitech.github.io/fakerapi/auth/</link>
+    <description>Recent content in Auths on Faker api</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Jul 2016 11:25:06 +0800</lastBuildDate>
+    <atom:link href="http://qijitech.github.io/fakerapi/auth/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Auth</title>
+      <link>http://qijitech.github.io/fakerapi/auth/</link>
+      <pubDate>Mon, 18 Jul 2016 11:25:06 +0800</pubDate>
+      
+      <guid>http://qijitech.github.io/fakerapi/auth/</guid>
+      <description>
+
+&lt;h2 id=&#34;第三方登录&#34;&gt;第三方登录&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;地址： POST /auth/third_party&lt;/li&gt;
+&lt;li&gt;Demo：&lt;a href=&#34;http://fakerapi.qiji.tech/auth/third_party&#34;&gt;http://fakerapi.qiji.tech/auth/third_party&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;参数：
+
+&lt;ul&gt;
+&lt;li&gt;open_id：第三方平台openid&lt;/li&gt;
+&lt;li&gt;platform：平台类型
+
+&lt;ul&gt;
+&lt;li&gt;qq&lt;/li&gt;
+&lt;li&gt;weixin&lt;/li&gt;
+&lt;li&gt;weibo&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;platform_info：平台信息&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Response&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;  {
+    &amp;quot;id&amp;quot;: 22,
+    &amp;quot;mobile&amp;quot;: &amp;quot;186****4602&amp;quot;,
+    &amp;quot;email&amp;quot;: null,
+    &amp;quot;user_info&amp;quot;: {
+        &amp;quot;user_id&amp;quot;: 22,
+        &amp;quot;nickname&amp;quot;: &amp;quot;MMfdsakf&amp;quot;,
+        &amp;quot;avatar&amp;quot;: &amp;quot;&amp;quot;,
+        &amp;quot;gender&amp;quot;: 0,
+        &amp;quot;year_of_birth&amp;quot;: 0,
+        &amp;quot;month_of_birth&amp;quot;: 0,
+        &amp;quot;day_of_birth&amp;quot;: 0,
+        &amp;quot;count_report&amp;quot;: 0,
+        &amp;quot;count_read&amp;quot;: 0,
+        &amp;quot;count_post&amp;quot;: 10
+    },
+    &amp;quot;user_token&amp;quot;: [
+        {
+            &amp;quot;open_id&amp;quot;: &amp;quot;fdsakf&amp;quot;,
+            &amp;quot;platform&amp;quot;: &amp;quot;qq&amp;quot;,
+            &amp;quot;is_bind&amp;quot;: true
+        }
+    ],
+    &amp;quot;token&amp;quot;: &amp;quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZmFrZXJhcGkucWlqaXRlY2guYXBwL2F1dGgvdGhpcmRfcGFydHkiLCJpYXQiOjE0Njg4MTM2MTYsImV4cCI6MTQ2ODgxNzIxNiwibmJmIjoxNDY4ODEzNjE2LCJqdGkiOiIxMDJjZWM0ZGVkZGMyOGMzZGU5ZTA4MjU0Y2IzZTdmOSIsInN1YiI6MjJ9.gmG0nJ8q3eqejbUQjww7hAjRilrE04ZR0iCNaQ-F2O4&amp;quot;
+  }
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Error
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;  {
+    &amp;quot;message&amp;quot;: &amp;quot;422 Unprocessable Entity&amp;quot;,
+    &amp;quot;errors&amp;quot;: {
+        &amp;quot;open_id&amp;quot;: [
+            &amp;quot;The open id field is required.&amp;quot;
+        ]
+    },
+    &amp;quot;status_code&amp;quot;: 422
+  }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
