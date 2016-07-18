@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CategoryInterface;
-use App\Repositories\Interfaces\PostInterface;
+use App\Repositories\Interfaces\PostsInterface;
 use App\Transformers\PostsTransformer;
 
 /**
@@ -15,12 +15,12 @@ class PostsController extends Controller
 
   /**
    * PostsController constructor.
-   * @param PostInterface $postInterface
+   * @param PostsInterface $postsInterface
    */
-  public function __construct(PostInterface $postInterface)
+  public function __construct(PostsInterface $postsInterface)
   {
     parent::__construct();
-    $this->postInterface = $postInterface;
+    $this->postInterface = $postsInterface;
   }
 
   /**

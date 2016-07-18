@@ -3,7 +3,7 @@
 use App\Entity\PostCategory;
 use App\Entity\UserInfo;
 
-interface PostInterface
+interface PostsInterface
 {
   public function createPost(UserInfo $userInfo, PostCategory $category, $content, $images, $lat, $lng);
 

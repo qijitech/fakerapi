@@ -5,10 +5,10 @@ use App\Entity\Post;
 use App\Entity\PostCategory;
 use App\Entity\UserInfo;
 use App\Enum\Status;
-use App\Repositories\Interfaces\PostInterface;
+use App\Repositories\Interfaces\PostsInterface;
 use DB;
 
-class PostRepository implements PostInterface
+class PostsRepository implements PostsInterface
 {
   public function createPost(UserInfo $userInfo, PostCategory $category, $content, $images, $lat, $lng)
   {

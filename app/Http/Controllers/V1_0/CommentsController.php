@@ -3,7 +3,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CommentsInterface;
-use App\Repositories\Interfaces\PostInterface;
+use App\Repositories\Interfaces\PostsInterface;
 
 /**
  * 评论Controller
@@ -39,10 +39,10 @@ class CommentsController extends Controller
 
   /**
    * POST /comments
-   * @param PostInterface $postInterface
+   * @param PostsInterface $postsInterface
    * @return mixed
    */
-  public function store(PostInterface $postInterface)
+  public function store(PostsInterface $postsInterface)
   {
     $this->validate($this->request, [
       'post_id' => 'required|integer',
@@ -51,7 +51,7 @@ class CommentsController extends Controller
 
     $user = $this->auth()->user();
 
-    $post = $postInterface->findPostWithException($this->inputGet('post_id'));
+    $post = $postsInterface->findPostWithException($this->inputGet('post_id'));
 
     $parentId = $this->inputGet('parent_id');
     if ($parentId) {
