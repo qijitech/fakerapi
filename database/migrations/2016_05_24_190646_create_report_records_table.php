@@ -22,7 +22,10 @@ class CreateReportRecordsTable extends Migration
       $table->unsignedTinyInteger('type')->default(0)->comment('举报类型');
 
       // morph
-      $table->morphs('reportable');
+//      $table->morphs('reportable');
+      $table->unsignedInteger("reportable_id");
+      $table->string("reportable_type", 20);
+      $table->index(["reportable_id", "reportable_type"]);
 
       $table->unsignedInteger('informer_id')->nullable()->comment('举报人用户ID');
 
