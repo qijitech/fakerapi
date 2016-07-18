@@ -101,14 +101,49 @@ class PostsRepository implements PostsInterface
     return $records;
   }
 
+  /**
+   * @param $userId
+   * @param $sinceId
+   * @param $maxId
+   * @param int $pageSize
+   * @return mixed
+   */
   public function getUserPosts($userId, $sinceId, $maxId, $pageSize = 20)
   {
-    // TODO: Implement getUserPosts() method.
+    $query = Post::enabled()->with('category', 'images')
+      ->whereDeleted(false)
+      ->whereUserId($userId);
+
+    if ($maxId) {
+      $query->where('id', '<', $maxId);
+    } else if ($sinceId) {
+      $query->where('id', '>', $sinceId);
+    }
+
+    return $query->orderBy('created_at', 'desc')
+      ->orderBy('id', 'desc')->take($pageSize)->get();
   }
 
+  /**
+   * @param $userId
+   * @param $sinceId
+   * @param $maxId
+   * @param int $pageSize
+   * @return mixed
+   */
   public function getMyPosts($userId, $sinceId, $maxId, $pageSize = 20)
   {
-    // TODO: Implement getMyPosts() method.
+    $query = Post::enabled()->with('category', 'images')
+      ->whereUserId($userId);
+
+    if ($maxId) {
+      $query->where('id', '<', $maxId);
+    } else if ($sinceId) {
+      $query->where('id', '>', $sinceId);
+    }
+
+    return $query->orderBy('created_at', 'desc')
+      ->orderBy('id', 'desc')->take($pageSize)->get();
   }
 
 

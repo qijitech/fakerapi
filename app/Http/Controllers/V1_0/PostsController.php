@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CategoryInterface;
 use App\Repositories\Interfaces\PostsInterface;
+use App\Transformers\MyPostsTransformer;
 use App\Transformers\PostsTransformer;
 
 /**
@@ -120,6 +121,34 @@ class PostsController extends Controller
       return $this->respondSuccess('删除帖子成功');
     }
     return $this->respondUnprocessable('删除失败');
+  }
+
+  /**
+   * 用户动态
+   * GET /posts/user_timeline
+   * @param PostsInterface $postInterface
+   * @return mixed
+   */
+  public function getUserTimeline(PostsInterface $postInterface)
+  {
+    $maxId = $this->getMaxId();
+    $sinceId = $this->getSinceId();
+    $pageSize = $this->getPageSize();
+
+    $userId = $this->inputGet('user_id'); // if null
+
+    if ($userId) {
+      $data = $postInterface->getUserPosts($userId, $sinceId, $maxId, $pageSize);
+      return $this->respondWithCollection($data, new PostsTransformer);
+    }
+
+    $user = $this->auth()->user();
+    if (is_null($user)) {
+      return $this->errorUnauthorized();
+    }
+
+    $data = $postInterface->getMyPosts($user->id, $sinceId, $maxId, $pageSize);
+    return $this->respondWithCollection($data, new MyPostsTransformer);
   }
 
 }

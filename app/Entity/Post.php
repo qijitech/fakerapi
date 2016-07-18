@@ -58,8 +58,9 @@ class Post extends BaseEntity
   ];
 
   protected $casts = [
-    'lat' => 'double',
-    'lng' => 'double',
+    'lat'     => 'double',
+    'lng'     => 'double',
+    'deleted' => 'boolean',
   ];
 
   public function userInfo()
