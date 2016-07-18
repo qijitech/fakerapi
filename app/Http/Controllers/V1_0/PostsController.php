@@ -99,10 +99,14 @@ class PostsController extends Controller
   /**
    * 帖子详情
    * GET /posts/{post_id}
+   * @param PostsTransformer $postsTransformer
+   * @param $postId
+   * @return mixed
    */
-  public function show($postId)
+  public function show(PostsTransformer $postsTransformer, $postId)
   {
-
+    $data = $this->postInterface->getPost($postId);
+    return $this->respondWithItem($data, $postsTransformer);
   }
 
   /**

@@ -13,6 +13,8 @@ interface PostsInterface
 
   public function findPost($postId);
 
+  public function getPost($postId);
+
   public function delete($postId);
 
   public function getUserPosts($userId, $sinceId, $maxId, $pageSize = 20);

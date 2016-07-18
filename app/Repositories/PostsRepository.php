@@ -82,6 +82,19 @@ class PostsRepository implements PostsInterface
     return Post::findOrFail($postId);
   }
 
+  public function getPost($postId)
+  {
+    $post = Post::with('userInfo', 'category', 'images')->findOrFail($postId);
+    if ($post->status == Status::DISABLED) {
+      throw new ResourceDisabledException();
+    }
+    if ($post->deleted) {
+      throw new ResourceDisabledException();
+    }
+    $post->increment('count_views');
+    return $post;
+  }
+
   public function delete($postId)
   {
     $records = Post::whereId($postId)->update(['deleted' => true]);
