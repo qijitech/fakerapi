@@ -24,7 +24,10 @@ class CreateImagesTable extends Migration
       $table->string('url', 255)->comment('图片路径');
 
       // morph
-      $table->morphs('imageable');
+//      $table->morphs('imageable');
+      $this->unsignedInteger("imageable_id");
+      $this->string("imageable_type", 20);
+      $this->index(["imageable_id", "imageable_type"]);
 
       // timestamp fields
       $table->timestamps();
