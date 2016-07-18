@@ -25,9 +25,9 @@ class CreateImagesTable extends Migration
 
       // morph
 //      $table->morphs('imageable');
-      $this->unsignedInteger("imageable_id");
-      $this->string("imageable_type", 20);
-      $this->index(["imageable_id", "imageable_type"]);
+      $table->unsignedInteger("imageable_id");
+      $table->string("imageable_type", 20);
+      $table->index(["imageable_id", "imageable_type"]);
 
       // timestamp fields
       $table->timestamps();
