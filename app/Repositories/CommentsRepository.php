@@ -42,4 +42,21 @@ class CommentsRepository implements CommentsInterface
     return Comment::with('userInfo')->findOrFail($commentId);
   }
 
+  public function getComments($postId, $sinceId, $maxId, $pageSize = 20)
+  {
+    $query = Comment::enabled()
+      ->with('userInfo', 'parent', 'parent.userInfo')
+      ->wherePostId($postId);
+
+    if ($maxId) {
+      $query->where('id', '<', $maxId);
+    } else if ($sinceId) {
+      $query->where('id', '>', $sinceId);
+    }
+
+    return $query->orderBy('id', 'desc')
+      ->take($pageSize)
+      ->get();
+  }
+
 }

@@ -24,6 +24,20 @@ class CommentsController extends Controller
   }
 
   /**
+   * /GET /comments/{post_id}
+   * @return mixed
+   */
+  public function index($postId)
+  {
+    $data = $this->commentsInterface->getComments($postId,
+      $this->getSinceId(),
+      $this->getMaxId(),
+      $this->getPageSize()
+    );
+    return $this->respondWithCollection($data);
+  }
+
+  /**
    * POST /comments
    * @param PostInterface $postInterface
    * @return mixed
@@ -31,7 +45,7 @@ class CommentsController extends Controller
   public function store(PostInterface $postInterface)
   {
     $this->validate($this->request, [
-      'post_id' => 'required',
+      'post_id' => 'required|integer',
       'content' => 'required',
     ]);
 

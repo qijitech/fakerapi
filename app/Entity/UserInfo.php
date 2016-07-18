@@ -44,7 +44,6 @@ class UserInfo extends BaseEntity
   ];
 
   protected $hidden = [
-    'user_id',
     'created_at',
     'updated_at',
   ];

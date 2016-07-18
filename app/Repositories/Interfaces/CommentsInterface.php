@@ -14,4 +14,5 @@ interface CommentsInterface
 
   public function findComment($commentId);
 
+  public function getComments($postId, $sinceId, $maxId, $pageSize = 20);
 }
