@@ -60,8 +60,8 @@ class PostsController extends Controller
     $this->validate($this->request, [
       'post_category_id' => 'required|integer',
       'content'          => 'string|max:400',
-      'lng'              => 'required|numeric',
-      'lat'              => 'required|numeric',
+      'lng'              => 'numeric',
+      'lat'              => 'numeric',
     ]);
 
     // validate content and images
@@ -90,8 +90,8 @@ class PostsController extends Controller
       $category,
       $content,
       $images,
-      $this->inputGet('lat'),
-      $this->inputGet('lng')
+      $this->inputGet('lat', 0),
+      $this->inputGet('lng', 0)
     );
 
     return $this->respondWithItem($post, $postsTransformer);
