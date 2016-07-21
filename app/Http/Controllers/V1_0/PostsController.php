@@ -32,8 +32,8 @@ class PostsController extends Controller
   public function index(PostsTransformer $postsTransformer)
   {
     $this->validate($this->request, [
-      'lng' => 'required|numeric',
-      'lat' => 'required|numeric',
+      'lng' => 'numeric',
+      'lat' => 'numeric',
     ]);
 
     $data = $this->postInterface->getPosts(
@@ -60,8 +60,8 @@ class PostsController extends Controller
     $this->validate($this->request, [
       'post_category_id' => 'required|integer',
       'content'          => 'string|max:400',
-      'lng'              => 'numeric',
-      'lat'              => 'numeric',
+      'lng'              => 'required|numeric',
+      'lat'              => 'required|numeric',
     ]);
 
     // validate content and images
