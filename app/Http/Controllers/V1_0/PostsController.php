@@ -40,8 +40,8 @@ class PostsController extends Controller
       $this->getSinceId(),
       $this->getMaxId(),
       $this->getPageSize(),
-      $this->inputGet('lng'),
-      $this->inputGet('lat')
+      $this->inputGet('lng', 0),
+      $this->inputGet('lat', 0)
     );
     return $this->respondWithCollection($data, $postsTransformer);
   }
