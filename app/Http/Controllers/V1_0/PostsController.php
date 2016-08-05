@@ -47,6 +47,27 @@ class PostsController extends Controller
   }
 
   /**
+   * GET /posts/page
+   * @param PostsTransformer $postsTransformer
+   * @return mixed
+   */
+  public function indexPage(PostsTransformer $postsTransformer)
+  {
+    $this->validate($this->request, [
+      'lng' => 'numeric',
+      'lat' => 'numeric',
+    ]);
+
+    $data = $this->postInterface->getPostsWithPage(
+      $this->getPage(),
+      $this->getPageSize(),
+      $this->inputGet('lng', 0),
+      $this->inputGet('lat', 0)
+    );
+    return $this->respondWithCollection($data, $postsTransformer);
+  }
+
+  /**
    * 发布帖子
    * POST /posts
    * @param CategoryInterface $categoryInterface

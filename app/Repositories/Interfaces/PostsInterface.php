@@ -9,6 +9,8 @@ interface PostsInterface
 
   public function getPosts($sinceId, $maxId, $pageSize = 20, $lng = 0, $lat = 0);
 
+  public function getPostsWithPage($page, $pageSize = 20, $lat, $lng);
+
   public function findPostWithException($postId);
 
   public function findPost($postId);

@@ -50,6 +50,45 @@ class PostsRepository implements PostsInterface
       });
   }
 
+  /**
+   * @param $page
+   * @param int $pageSize
+   * @param $lat
+   * @param $lng
+   * @return array|static[]
+   */
+  public function getPostsWithPage($page, $pageSize = 20, $lat, $lng)
+  {
+    $query = Post::with('userInfo', 'category', 'images')
+      ->whereDeleted(false);
+
+    if ($lat && $lng) {
+      $direction = 'asc';
+      $orderByRaw = DB::raw('ACOS(SIN((' . $lat . ' * 3.1415) / 180 ) * SIN((`lat` * 3.1415) / 180 ) + COS((' . $lat . ' * 3.1415) / 180 ) * COS((`lat` * 3.1415) / 180 ) *COS((' . $lng . ' * 3.1415) / 180 - (`lng` * 3.1415) / 180 ) ) * 6380');
+
+      /**
+       * 一度60分,一分60秒.
+       * 纬度1度=大约111km 纬度1分=大约1.85km 纬度1秒=大约30.9m lat
+       * 经度1度=大约85.39km 纬度1分=大约1.42km 纬度1秒=大约23.6m lng
+       */
+      $deltaLat = 0.23;
+      $deltaLng = 0.18;
+
+      $query->where('lat', '>=', $lat - $deltaLat)
+        ->where('lat', '<=', $lat + $deltaLat)
+        ->where('lng', '>=', $lng - $deltaLng)
+        ->where('lng', '<=', $lng + $deltaLng);
+
+      $query->orderBy('created_at', 'desc')
+        ->orderBy($orderByRaw, $direction);
+    } else {
+      $query->orderBy('created_at', 'desc');
+    }
+
+    return $query->forPage($page, $pageSize)->get();
+  }
+
+
   public function getPosts($sinceId, $maxId, $pageSize = 20, $lng = 0, $lat = 0)
   {
     $query = Post::with('userInfo', 'category', 'images')
