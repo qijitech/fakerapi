@@ -15,6 +15,7 @@ $api->version('v1.0', ['namespace' => 'App\Http\Controllers\V1_0'], function ($a
   $api->get('posts', 'PostsController@index'); // 动态列表-首页
   $api->get('posts/{post_id}/comments', 'CommentsController@index'); // 帖子评论
   $api->get('posts/pages', 'PostsController@indexPage'); // 动态列表-首页,通过页面分页
+  $api->get('posts/paginator', 'PostsController@getPosts'); // 动态列表-首页,通过页面分页
   $api->get('posts/user_timeline', 'PostsController@getUserTimeline'); // 用户动态,传user_id获取用户动态,不传user_id获取我的动态
 
   $api->group(['middleware' => 'api.auth'], function ($api) {

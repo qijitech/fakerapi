@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\V1_0;
 
+use App\Entity\Post;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CategoryInterface;
 use App\Repositories\Interfaces\PostsInterface;
@@ -170,6 +171,17 @@ class PostsController extends Controller
 
     $data = $postInterface->getMyPosts($user->id, $sinceId, $maxId, $pageSize);
     return $this->respondWithCollection($data, new MyPostsTransformer);
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPosts()
+  {
+    $data = Post::with('userInfo', 'category', 'images')
+      ->whereDeleted(false)->paginate();
+
+    return $data;
   }
 
 }
