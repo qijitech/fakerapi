@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\V1_0;
 
+use App\Entity\Post;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\PostInterface;
 
@@ -40,6 +41,19 @@ class PostsController extends Controller
       $this->inputGet('lat')
     );
     return $this->respondWithCollection($data);
+  }
+
+  public function getPosts()
+  {
+    $this->validate($this->request, [
+      'lng' => 'required|numeric',
+      'lat' => 'required|numeric',
+    ]);
+
+    $data = Post::with('userInfo', 'category', 'images')
+      ->whereDeleted(false)->paginate();
+
+    return $this->respondWithPagination($data);
   }
 
 }
