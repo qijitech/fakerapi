@@ -9,6 +9,7 @@ use App\Transformers\CommentsTransformer;
 /**
  * 评论Controller
  * Class CommentsController
+ * @property CommentsInterface commentsInterface
  * @package App\Http\Controllers\V1_0
  */
 class CommentsController extends Controller
@@ -20,7 +21,6 @@ class CommentsController extends Controller
    */
   public function __construct(CommentsInterface $commentsInterface)
   {
-    parent::__construct();
     $this->commentsInterface = $commentsInterface;
   }
 
@@ -32,16 +32,16 @@ class CommentsController extends Controller
    */
   public function store(PostsInterface $postsInterface, CommentsTransformer $commentsTransformer)
   {
-    $this->validate($this->request, [
+    validate([
       'post_id' => 'required|integer',
       'content' => 'required',
     ]);
 
-    $user = $this->auth()->user();
+    $user = user();
 
-    $post = $postsInterface->findPostWithException($this->inputGet('post_id'));
+    $post = $postsInterface->findPostWithException(inputGet('post_id'));
 
-    $parentId = $this->inputGet('parent_id');
+    $parentId = inputGet('parent_id');
     if ($parentId) {
       $parent = $this->commentsInterface->findCommentWithException($parentId);
     } else {
@@ -49,9 +49,9 @@ class CommentsController extends Controller
     }
 
     $comment = $this->commentsInterface->createComment($user, $post,
-      $this->inputGet('content'), $parent
+      inputGet('content'), $parent
     );
-    return $this->respondWithItem($comment, $commentsTransformer);
+    return respondWithItem($comment, $commentsTransformer);
   }
 
   /**
@@ -63,11 +63,11 @@ class CommentsController extends Controller
   public function index(CommentsTransformer $commentsTransformer, $postId)
   {
     $data = $this->commentsInterface->getComments($postId,
-      $this->getSinceId(),
-      $this->getMaxId(),
-      $this->getPageSize()
+      sinceId(),
+      maxId(),
+      pageSize()
     );
-    return $this->respondWithCollection($data, $commentsTransformer);
+    return respondWithCollection($data, $commentsTransformer);
   }
 
 }

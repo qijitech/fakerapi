@@ -4,6 +4,9 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\AuthInterface;
 use App\Transformers\AuthTransformer;
 
+/**
+ * @property AuthInterface userInterface
+ */
 class AuthController extends Controller
 {
   /**
@@ -12,8 +15,6 @@ class AuthController extends Controller
    */
   public function __construct(AuthInterface $interface)
   {
-    parent::__construct();
-
     $this->userInterface = $interface;
   }
 
@@ -26,17 +27,17 @@ class AuthController extends Controller
    */
   public function postThirdParty(AuthTransformer $authTransformer)
   {
-    $this->validate($this->request, [
+    validate([
       'open_id'       => 'required',
       'platform'      => 'required|in:qq,weixin,weibo',
       'platform_info' => 'required',
     ]);
 
     $user = $this->userInterface->findOrCreateWithPlatform(
-      $this->inputGet('platform'),
-      $this->inputGet('open_id'),
-      $this->inputGet('platform_info')
+      inputGet('platform'),
+      inputGet('open_id'),
+      inputGet('platform_info')
     );
-    return $this->respondWithItem($user, $authTransformer);
+    return respondWithItem($user, $authTransformer);
   }
 }

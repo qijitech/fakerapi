@@ -7,6 +7,7 @@ use App\Repositories\Interfaces\UsersInterface;
 /**
  * 用户相关
  * Class UsersController
+ * @property UsersInterface usersInterface
  * @package App\Http\Controllers\V1_0
  */
 class UsersController extends Controller
@@ -18,7 +19,6 @@ class UsersController extends Controller
    */
   public function __construct(UsersInterface $usersInterface)
   {
-    parent::__construct();
     $this->usersInterface = $usersInterface;
   }
 
@@ -28,7 +28,7 @@ class UsersController extends Controller
    */
   public function update()
   {
-    $this->validate($this->request, [
+    validate([
       'avatar'         => 'max:255',
       'nickname'       => 'max:32',
       'gender'         => 'in:unknown,male,female',
@@ -37,17 +37,18 @@ class UsersController extends Controller
       'day_of_birth'   => 'integer',
     ]);
 
-    $params = $this->inputAll();
+    $params = inputAll();
     if (!$params || count($params) <= 0) {
-      return $this->respondUnprocessable('没有资料更改');
+      respondUnprocessable('没有资料更改');
     }
 
-    $user = $this->auth()->user();
+    $user = user();
     $updated = $this->usersInterface->update($user, $params);
     if (!$updated) {
-      return $this->respondUnprocessable('没有资料更改');
+      respondUnprocessable('没有资料更改');
     }
-    return $this->respondWithItem($user);
+
+    return respondWithItem($user);
   }
 
 }

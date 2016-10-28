@@ -2541,12 +2541,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/qijitech/api-starter-kit.git",
-                "reference": "60f60b1cc4265117a28d62bb5c743ac774e29338"
+                "reference": "c0f1d2bea70f985795288994f1dd28a5ececc186"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/qijitech/api-starter-kit/zipball/81e1d8fb0e1dd26fccaf45df5bf32cc440bbb458",
-                "reference": "60f60b1cc4265117a28d62bb5c743ac774e29338",
+                "reference": "c0f1d2bea70f985795288994f1dd28a5ececc186",
                 "shasum": ""
             },
             "require": {

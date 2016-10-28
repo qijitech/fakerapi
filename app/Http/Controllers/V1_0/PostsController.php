@@ -10,6 +10,7 @@ use App\Transformers\PostsTransformer;
 /**
  * 帖子Controller
  * Class PostsController
+ * @property PostsInterface postInterface
  * @package App\Http\Controllers\V1_0
  */
 class PostsController extends Controller
@@ -21,7 +22,6 @@ class PostsController extends Controller
    */
   public function __construct(PostsInterface $postsInterface)
   {
-    parent::__construct();
     $this->postInterface = $postsInterface;
   }
 
@@ -32,19 +32,19 @@ class PostsController extends Controller
    */
   public function index(PostsTransformer $postsTransformer)
   {
-    $this->validate($this->request, [
+    validate([
       'lng' => 'numeric',
       'lat' => 'numeric',
     ]);
 
     $data = $this->postInterface->getPosts(
-      $this->getSinceId(),
-      $this->getMaxId(),
-      $this->getPageSize(),
-      $this->inputGet('lng', 0),
-      $this->inputGet('lat', 0)
+      sinceId(),
+      maxId(),
+      pageSize(),
+      inputGet('lng', 0),
+      inputGet('lat', 0)
     );
-    return $this->respondWithCollection($data, $postsTransformer);
+    return respondWithCollection($data, $postsTransformer);
   }
 
   /**
@@ -54,18 +54,18 @@ class PostsController extends Controller
    */
   public function indexPage(PostsTransformer $postsTransformer)
   {
-    $this->validate($this->request, [
+    validate([
       'lng' => 'numeric',
       'lat' => 'numeric',
     ]);
 
     $data = $this->postInterface->getPostsWithPage(
-      $this->getPage(),
-      $this->getPageSize(),
-      $this->inputGet('lng', 0),
-      $this->inputGet('lat', 0)
+      currentPage(),
+      pageSize(),
+      inputGet('lng', 0),
+      inputGet('lat', 0)
     );
-    return $this->respondWithCollection($data, $postsTransformer);
+    return respondWithCollection($data, $postsTransformer);
   }
 
   /**
@@ -79,7 +79,7 @@ class PostsController extends Controller
   {
 
     // validate params
-    $this->validate($this->request, [
+    validate([
       'post_category_id' => 'required|integer',
       'content'          => 'string|max:400',
       'lng'              => 'required|numeric',
@@ -87,22 +87,22 @@ class PostsController extends Controller
     ]);
 
     // validate content and images
-    $content = $this->inputGet('content');
-    $images = $this->inputGet('images');
+    $content = inputGet('content');
+    $images = inputGet('images');
 
     if (!$content && (!count($images) || !$images)) {
-      return $this->respondUnprocessable('动态内容或图片不能都为空');
+      respondUnprocessable('动态内容或图片不能都为空');
     }
 
     if ($images && !is_array($images)) {
-      return $this->respondUnprocessable('图片参数格式不正确');
+      respondUnprocessable('图片参数格式不正确');
     }
 
     if ($images && count($images) > 9) {
-      return $this->respondUnprocessable('图片不能超过9张');
+      respondUnprocessable('图片不能超过9张');
     }
 
-    $category = $categoryInterface->findOrFail($this->inputGet('post_category_id'));
+    $category = $categoryInterface->findOrFail(inputGet('post_category_id'));
 
     // 获取登录用户
     $user = $this->auth()->user();
@@ -112,11 +112,11 @@ class PostsController extends Controller
       $category,
       $content,
       $images,
-      $this->inputGet('lat', 0),
-      $this->inputGet('lng', 0)
+      inputGet('lat', 0),
+      inputGet('lng', 0)
     );
 
-    return $this->respondWithItem($post, $postsTransformer);
+    return respondWithItem($post, $postsTransformer);
   }
 
   /**
@@ -129,7 +129,7 @@ class PostsController extends Controller
   public function show(PostsTransformer $postsTransformer, $postId)
   {
     $data = $this->postInterface->getPost($postId);
-    return $this->respondWithItem($data, $postsTransformer);
+    return respondWithItem($data, $postsTransformer);
   }
 
   /**
@@ -140,9 +140,9 @@ class PostsController extends Controller
   {
     $records = $this->postInterface->delete($postId);
     if ($records) {
-      return $this->respondSuccess('删除帖子成功');
+      return respondSuccess('删除帖子成功');
     }
-    return $this->respondUnprocessable('删除失败');
+    respondUnprocessable('删除失败');
   }
 
   /**
@@ -153,24 +153,24 @@ class PostsController extends Controller
    */
   public function getUserTimeline(PostsInterface $postInterface)
   {
-    $maxId = $this->getMaxId();
-    $sinceId = $this->getSinceId();
-    $pageSize = $this->getPageSize();
+    $maxId = maxId();
+    $sinceId = sinceId();
+    $pageSize = pageSize();
 
-    $userId = $this->inputGet('user_id'); // if null
+    $userId = inputGet('user_id'); // if null
 
     if ($userId) {
       $data = $postInterface->getUserPosts($userId, $sinceId, $maxId, $pageSize);
-      return $this->respondWithCollection($data, new PostsTransformer);
+      return respondWithCollection($data, new PostsTransformer);
     }
 
-    $user = $this->auth()->user();
+    $user = user();
     if (is_null($user)) {
-      return $this->errorUnauthorized();
+      errorUnauthorized();
     }
 
     $data = $postInterface->getMyPosts($user->id, $sinceId, $maxId, $pageSize);
-    return $this->respondWithCollection($data, new MyPostsTransformer);
+    return respondWithCollection($data, new MyPostsTransformer);
   }
 
   /**
@@ -178,10 +178,9 @@ class PostsController extends Controller
    */
   public function getPosts()
   {
-    $data = Post::with('userInfo', 'category', 'images')
-      ->whereDeleted(false)->paginate();
-
-    return $data;
+    $builder = Post::with('userInfo', 'category', 'images')
+      ->whereDeleted(false);
+    return respondWithPagination(morphPage($builder));
   }
 
 }
